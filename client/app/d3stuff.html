@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Transform Transitions</title>
+<style>
+
+    body {
+        margin: 0;
+    }
+
+    rect {
+        stroke: #fff;
+        stroke-width: .1px;
+    }
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+    var w = 960,
+        h = 500,
+        z = 20,
+        x = w / z,
+        y = h / z;
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+    svg.selectAll("rect")
+        .data(d3.range(x * y))
+        .enter().append("rect")
+        .attr("transform", translate)
+        .attr("width", z)
+        .attr("height", z)
+        .style("fill", function(d) { return d3.hsl(d % x / x * 360, 1, Math.floor(d / x) / y); })
+        .on("mouseover", mouseover);
+
+    function translate(d) {
+        return "translate(" + (d % x) * z + "," + Math.floor(d / x) * z + ")";
+    }
+
+    function mouseover(d) {
+        this.parentNode.appendChild(this);
+
+        d3.select(this)
+            .style("pointer-events", "none")
+            .transition()
+                .duration(1050)
+                .attr("transform", "translate(240,240)scale(12)rotate(90)")
+            .transition()
+                .duration(550)
+            .attr("transform", "translate(240,240)scale(12)rotate(135)")
+            .transition()
+                .duration(550)
+                .attr("transform", "translate(240,240)scale(12)rotate(180)")
+            .transition()
+                .duration(550)
+                .attr("transform", "translate(240,240)scale(12)rotate(225)")
+            .transition()
+                .duration(550)
+                .attr("transform", "translate(240,240)scale(12)rotate(270)")
+            .transition()
+                .duration(550)
+                .attr("transform", "translate(240,240)scale(12)rotate(315)")
+            .transition()
+                .duration(550)
+                .attr("transform", "translate(240,240)scale(12)rotate(360)")
+            .transition()
+            .delay(5250)
+            // .attr("transform", "translate(240,240)scale(0)")
+            // .style("fill-opacity", 0)
+            .remove();
+    }
+
+</script>

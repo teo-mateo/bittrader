@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BitTrader app</title>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">-->
+
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.css">
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.0/axios.js"></script>
+
+
+    <script type="text/javascript" src="static/d3/d3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="graphinteract.js"></script>
+
+    <style> /* set the CSS */
+
+    .line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 2px;
+    }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div id="positions-div">
+                <p>positions</p>
+                <svg id="svg-footer" width="250" height="50"></svg>
+            </div>
+        </div>
+        <div class="col-sm">
+            <p>price chart</p>
+            <select id="selectPriceSets" style="margin:2px">
+
+            </select>
+            <div style="margin: 2px">
+                <input type="button" class="btn btn-primary btn-sm" value="Load" onclick="buildPriceSetGraph()">
+                <input type="button" class="btn btn-primary btn-sm" value="Duplicate" onclick="duplicatePrice1mSim()">
+                <input type="button" class="btn btn-primary btn-sm" value="Create" onclick="createPrice1mSim()">
+                <input type="button" class="btn btn-danger btn-sm" value="Delete" onclick="deletePrice1mSim()">
+                <input type="button" class="btn btn-warning btn-sm" value="Show positions" onclick="addPositionsToGraph()">
+                &nbsp;
+            </div>
+            <div id="pricegraph-div">
+                <span id="pointA">A:</span><br>
+                <span id="pointB">B:</span><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+        d3init();
+
+        subscribeToBittrader();
+
+        priceSetsInit();
+
+    </script>
+
+
+
+</body>
+</html>

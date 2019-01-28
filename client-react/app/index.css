@@ -1,0 +1,14 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flex-item {
+    margin: 1px;
+}
